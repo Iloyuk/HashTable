@@ -33,16 +33,16 @@ public class LinkedList {
     // Prints the list in sequential order
     public void print() {
         if (isEmpty())
-            System.out.println("Empty");
+            System.out.println("\\");
         else
         {
             ListNode current = first;
             while (current != null)
             {
-                System.out.print(current.getValue() + " ");
+                System.out.print(current.getValue() + " -> ");
                 current = current.getNext();
             }
-            System.out.println();
+            System.out.println("\\");
         }
 
     }
@@ -52,7 +52,7 @@ public class LinkedList {
         ListNode current = first;
         boolean done = false;
 
-        if (current.getValue().equals(value)) { // Check for first node
+        if (((TableEntry)current.getValue()).getKey().equals(value)) { // Check for first node
             // If the only value in the list is the value that matches
             if (current.getNext() == null)
                 first = null;
@@ -60,7 +60,7 @@ public class LinkedList {
                 ListNode temp = first.getNext();
 
                 // Checks for consecutive matching values
-                while (temp != null && temp.getValue().equals(value))
+                while (temp != null && ((TableEntry)temp.getValue()).getKey().equals(value))
                     temp = temp.getNext();
 
                 first = temp;
@@ -73,11 +73,11 @@ public class LinkedList {
 
         // Check for other nodes
         while (!done && current.getNext() != null) {
-            if (current.getNext().getValue().equals(value)) {
+            if (((TableEntry)(current.getNext().getValue())).getKey().equals(value)) {
                 ListNode temp = current.getNext();
 
                 // Checks for consecutive matching values
-                while (temp != null && temp.getValue().equals(value))
+                while (temp != null && ((TableEntry)temp.getValue()).getKey().equals(value))
                     temp = temp.getNext();
 
                 current.setNext(temp);

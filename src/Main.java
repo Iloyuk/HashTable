@@ -27,6 +27,10 @@ public class Main {
                     table.insert(key, new DataType(name, gpa));
                     break;
                 case 2:
+                    System.out.print("Please enter the key, or last name, that you wish to delete: ");
+                    key = sc.next();
+                    table.delete(key);
+                    System.out.println("All entries with the key \"" + key + "\" have been deleted.");
                     break;
                 case 3:
                     table.printTable();

@@ -2,13 +2,19 @@ public class DataType {
     private String firstName;
     private double gpa;
 
+    // Constructor
     public DataType(String theName, double thegpa) {
         firstName = theName;
         gpa = thegpa;
     }
 
-    // Clarification on how to format the toString
+    // Get method for firstName
+    public String getName() {
+        return firstName;
+    }
+
+    // toString method for DataType objects
     public String toString() {
-        return null;
+        return firstName + ", " + gpa;
     }
 }
