@@ -1,6 +1,5 @@
 public class HashTable {
     private int size; // number of buckets
-    private int count; // number of table entries
     private LinkedList[] T; // array of buckets
 
     // Constructor
@@ -18,7 +17,8 @@ public class HashTable {
 
     // Delete TableEntry with the given key
     public void delete(Object key) {
-        T[hash(key)].delete(key);
+        if (!T[hash(key)].isEmpty())
+            T[hash(key)].delete(key);
     }
 
     // Insert TableEntry with data and associated key into HashTable
@@ -30,7 +30,6 @@ public class HashTable {
         }*/
 
         T[hash(key)].addAtBack(new TableEntry(key, data));
-        count++;
     }
 
     // Print contents of HashTable

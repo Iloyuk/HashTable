@@ -13,9 +13,8 @@ public class TableEntry {
         return key;
     }
 
-    // Returns true if this.key equals String (key) part of val
-    public boolean equals(TableEntry val) {
-        return key.equals(val.getKey());
+    public boolean equals(TableEntry obj) {
+        return (key.equals(obj.getKey()) && data.equals(obj.data)); // ask whether this is OK
     }
 
     // toString method for TableEntry objects

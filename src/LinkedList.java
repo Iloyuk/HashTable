@@ -12,12 +12,12 @@ public class LinkedList {
     }
 
     // Adds value at front of list
-    public void addAtFront(Object value) {
+    public void addAtFront(TableEntry value) {
         first = new ListNode(value, first);
     }
 
     // Adds value at back of list
-    public void addAtBack(Object value) {
+    public void addAtBack(TableEntry value) {
         if (isEmpty())
             addAtFront(value);
         else {
@@ -52,7 +52,7 @@ public class LinkedList {
         ListNode current = first;
         boolean done = false;
 
-        if (((TableEntry)current.getValue()).getKey().equals(value)) { // Check for first node
+        if (current.getValue().getKey().equals(value)) { // Check for first node
             // If the only value in the list is the value that matches
             if (current.getNext() == null)
                 first = null;
@@ -60,7 +60,7 @@ public class LinkedList {
                 ListNode temp = first.getNext();
 
                 // Checks for consecutive matching values
-                while (temp != null && ((TableEntry)temp.getValue()).getKey().equals(value))
+                while (temp != null && temp.getValue().getKey().equals(value))
                     temp = temp.getNext();
 
                 first = temp;
@@ -73,11 +73,11 @@ public class LinkedList {
 
         // Check for other nodes
         while (!done && current.getNext() != null) {
-            if (((TableEntry)(current.getNext().getValue())).getKey().equals(value)) {
+            if (current.getNext().getValue().getKey().equals(value)) {
                 ListNode temp = current.getNext();
 
                 // Checks for consecutive matching values
-                while (temp != null && ((TableEntry)temp.getValue()).getKey().equals(value))
+                while (temp != null && temp.getValue().getKey().equals(value))
                     temp = temp.getNext();
 
                 current.setNext(temp);
@@ -105,68 +105,6 @@ public class LinkedList {
         return counter;
     }
 
-    // Inserts a value at position in the list; pos ranges from 1 to size() + 1
-    public void insertPos(Object value, int pos) {
-
-        if (pos == 1)
-            addAtFront(value);
-        else if (pos == size() + 1)
-            addAtBack(value);
-        else {
-            ListNode current = first;
-            int counter = 1;
-
-            do {
-                if (counter + 1 == pos)
-                    current.setNext(new ListNode(value, current.getNext()));
-                else
-                    current = current.getNext();
-
-                counter++;
-            } while (counter + 1 <= pos);
-        }
-    }
-
-    // Inserts a value into the list before the search value
-    public void insert(Object value, int search_value) {
-        ListNode current = first;
-        ListNode hold = null;
-        boolean isFirst = false;
-
-        if (first.getValue().equals(search_value)) { // Check for first node
-            hold = first;
-            isFirst = true;
-        }
-
-        while (current.getNext() != null) {
-            if (current.getNext().getValue().equals(search_value)) {
-                // Holds the pointer to the node one before the search value
-                hold = current;
-                isFirst = false;
-            }
-
-            current = current.getNext();
-        }
-
-        // Special case for if search value is still on the first node
-        if (isFirst)
-            addAtFront(value);
-        else {
-            assert hold != null;
-            hold.setNext(new ListNode(value, hold.getNext()));
-        }
-    }
-
-    // Returns element of the last node in the list
-    public int getLast() {
-        ListNode current = first;
-
-        while (current.getNext() != null)
-            current = current.getNext();
-
-        return (int)current.getValue();
-    }
-
     // Clears entire list
     public void clear() {
         first = null;
@@ -177,54 +115,15 @@ public class LinkedList {
         ListNode current = first;
 
         // If the first node in the list is the value
-        if (first.getValue().equals(value))
+        if (first.getValue().getKey().equals(value))
             return true;
 
         while (current.getNext() != null) {
-            if (current.getNext().getValue().equals(value))
+            if (current.getNext().getValue().getKey().equals(value))
                 return true;
             current = current.getNext();
         }
         return false;
     }
 
-    // Removes all extraneous duplicate values
-    public void removeDuplicates() {
-        // Deletes duplicate values for the first element
-        int value = (int)first.getValue();
-        delete(value);
-        addAtFront(value);
-
-        ListNode current = first;
-        int counter = 2; // Tracker to see what position in the list we're in
-
-        while (current.getNext() != null) {
-            value = (int)current.getNext().getValue();
-            delete(value);
-            insertPos(value, counter);
-
-            current = current.getNext();
-            counter++;
-        }
-
-    }
-
-    // Prints the list backwards
-    public void printBackwards() {
-        if (isEmpty()) {
-            print();
-            return;
-        }
-
-        printBack(first);
-        System.out.println();
-    }
-
-    // Helper method for recursively printing the list
-    private void printBack(ListNode current) {
-        if (current.getNext() != null)
-            printBack(current.getNext());
-
-        System.out.print(current.getValue() + " ");
-    }
 }

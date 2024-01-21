@@ -1,20 +1,20 @@
 public class ListNode {
-    private Object value;
+    private TableEntry value;
     private ListNode next;
 
     // Constructor to make a new node with both data and pointer
-    public ListNode(Object initValue, ListNode initNext) {
+    public ListNode(TableEntry initValue, ListNode initNext) {
         value = initValue;
         next = initNext;
     }
 
     // Constructor to make a new node with a null pointer
-    public ListNode(Object initValue) {
+    public ListNode(TableEntry initValue) {
         this(initValue, null);
     }
 
     // Sets the current value of the node to the value from the parameter
-    public void setValue(Object theNewValue) {
+    public void setValue(TableEntry theNewValue) {
         value = theNewValue;
     }
 
@@ -24,7 +24,7 @@ public class ListNode {
     }
 
     // Returns the value of the node
-    public Object getValue() {
+    public TableEntry getValue() {
         return value;
     }
 

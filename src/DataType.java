@@ -13,6 +13,11 @@ public class DataType {
         return firstName;
     }
 
+    // Compares if firstName is equal
+    public boolean equals(DataType obj) {
+        return firstName.equals(obj.getName());
+    }
+
     // toString method for DataType objects
     public String toString() {
         return firstName + ", " + gpa;
